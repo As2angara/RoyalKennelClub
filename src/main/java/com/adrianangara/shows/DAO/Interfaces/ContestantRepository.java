@@ -10,4 +10,5 @@ public interface ContestantRepository {
     Contestant getById(int id);
     Contestant save(Contestant con);
     Contestant update(Contestant con, int id);
+    void deleteById(int id);
 }

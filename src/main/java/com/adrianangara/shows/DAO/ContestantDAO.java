@@ -65,6 +65,13 @@ public class ContestantDAO implements ContestantRepository {
         return con;
     }
 
+    @Override
+    public void deleteById(int id) {
+        int rows = jdbc.update("delete from Contestant where id=" + id);
+
+//        System.out.println(rows + " rows were updated");
+    }
+
     private Contestant mapRowToContestant(ResultSet rs, int rowNum) throws SQLException {
 
         return new Contestant(

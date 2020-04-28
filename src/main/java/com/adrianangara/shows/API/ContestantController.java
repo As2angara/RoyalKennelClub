@@ -4,6 +4,7 @@ import com.adrianangara.shows.DAO.ContestantDAO;
 import com.adrianangara.shows.DAO.Interfaces.ContestantRepository;
 import com.adrianangara.shows.Models.Contestant;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
@@ -43,6 +44,17 @@ public class ContestantController {
     @PutMapping("/{id}")
     public Contestant putContestant(@RequestBody Contestant con, @PathVariable("id") int id) {
         return cr.update(con, id);
+    }
+
+    //DELETE Operations
+    @DeleteMapping("/{id}")
+    @ResponseStatus(code=HttpStatus.NO_CONTENT)
+    public void deleteContestant(@PathVariable("id") int id) {
+        try {
+            cr.deleteById(id);
+        }catch (EmptyResultDataAccessException e){
+
+        }
     }
 }
 

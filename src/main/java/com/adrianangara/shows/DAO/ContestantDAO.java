@@ -27,6 +27,26 @@ public class ContestantDAO implements ContestantRepository {
                 this::mapRowToContestant);
     }
 
+    @Override
+    public Contestant getById(int id) {
+        return jdbc.queryForObject("select * from Contestant where id=?",
+                this::mapRowToContestant, id);
+    }
+
+    @Override
+    public Contestant save(Contestant con) {
+        jdbc.update("insert into Contestant (name, ownerName, breed, dog_group, isMale, isSpecial) " +
+                "values (?, ?, ?, ?, ?, ?)",
+                con.getName(),
+                con.getOwnerName(),
+                con.getBreed(),
+                con.getGroup(),
+                con.getIsMale(),
+                con.getIsSpecial());
+
+        return con;
+    }
+
     private Contestant mapRowToContestant(ResultSet rs, int rowNum) throws SQLException {
 
         return new Contestant(

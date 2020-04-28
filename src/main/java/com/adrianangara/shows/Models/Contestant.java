@@ -29,4 +29,12 @@ public class Contestant {
         this.isMale = isMale;
         this.isSpecial = isSpecial;
     }
+
+    public boolean getIsMale() {
+        return isMale;
+    }
+
+    public boolean getIsSpecial() {
+        return isSpecial;
+    }
 }

@@ -13,17 +13,17 @@ public class Contestant {
 
     public int id;
     public String name;
-    public String ownerName;
+    public int ownerId;
     public String breed;
     public String group;
     public boolean isMale;
     public boolean isSpecial;
 
-    public Contestant(int id, String name, String ownerName, String breed, String group,
+    public Contestant(int id, String name, int ownerId, String breed, String group,
                       boolean isMale, boolean isSpecial) {
         this.id = id;
         this.name = name;
-        this.ownerName = ownerName;
+        this.ownerId = ownerId;
         this.breed = breed;
         this.group = group;
         this.isMale = isMale;

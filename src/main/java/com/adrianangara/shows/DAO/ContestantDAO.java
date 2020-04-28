@@ -36,11 +36,10 @@ public class ContestantDAO implements ContestantRepository {
 
     @Override
     public Contestant save(Contestant con) {
-
         jdbc.update("insert into Contestant (name, ownerName, breed, dog_group, isMale, isSpecial) " +
                 "values (?, ?, ?, ?, ?, ?)",
                 con.getName(),
-                con.getOwnerName(),
+                con.getOwnerId(),
                 con.getBreed(),
                 con.getGroup(),
                 con.getIsMale(),
@@ -56,7 +55,7 @@ public class ContestantDAO implements ContestantRepository {
         jdbc.update("update Contestant set name=?, ownerName=?, breed=?, dog_group=?, isMale=?, isSpecial=?" +
                 " where id=" + id,
                 con.getName(),
-                con.getOwnerName(),
+                con.getOwnerId(),
                 con.getBreed(),
                 con.getGroup(),
                 con.getIsMale(),
@@ -68,8 +67,6 @@ public class ContestantDAO implements ContestantRepository {
     @Override
     public void deleteById(int id) {
         int rows = jdbc.update("delete from Contestant where id=" + id);
-
-//        System.out.println(rows + " rows were updated");
     }
 
     private Contestant mapRowToContestant(ResultSet rs, int rowNum) throws SQLException {
@@ -77,7 +74,7 @@ public class ContestantDAO implements ContestantRepository {
         return new Contestant(
                 rs.getInt("id"),
                 rs.getString("name"),
-                rs.getString("ownerName"),
+                rs.getInt("owner_id"),
                 rs.getString("breed"),
                 rs.getString("dog_group"),
                 rs.getBoolean("isMale"),

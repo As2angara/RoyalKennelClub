@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
+import java.sql.Types;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -35,8 +36,25 @@ public class ContestantDAO implements ContestantRepository {
 
     @Override
     public Contestant save(Contestant con) {
+
         jdbc.update("insert into Contestant (name, ownerName, breed, dog_group, isMale, isSpecial) " +
                 "values (?, ?, ?, ?, ?, ?)",
+                con.getName(),
+                con.getOwnerName(),
+                con.getBreed(),
+                con.getGroup(),
+                con.getIsMale(),
+                con.getIsSpecial()
+                );
+
+        return con;
+    }
+
+    @Override
+    public Contestant update(Contestant con, int id) {
+
+        jdbc.update("update Contestant set name=?, ownerName=?, breed=?, dog_group=?, isMale=?, isSpecial=?" +
+                " where id=" + id,
                 con.getName(),
                 con.getOwnerName(),
                 con.getBreed(),

@@ -39,5 +39,10 @@ public class ContestantController {
         return cr.save(con);
     }
 
+    //UPDATE Operations
+    @PutMapping("/{id}")
+    public Contestant putContestant(@RequestBody Contestant con, @PathVariable("id") int id) {
+        return cr.update(con, id);
+    }
 }
 

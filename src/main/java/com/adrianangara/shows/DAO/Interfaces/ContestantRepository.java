@@ -9,4 +9,5 @@ public interface ContestantRepository {
     Iterable<Contestant> getAll();
     Contestant getById(int id);
     Contestant save(Contestant con);
+    Contestant update(Contestant con, int id);
 }

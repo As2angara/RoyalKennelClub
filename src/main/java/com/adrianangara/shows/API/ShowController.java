@@ -4,6 +4,7 @@ import com.adrianangara.shows.DAO.Interfaces.ShowRepository;
 import com.adrianangara.shows.Models.Contestant;
 import com.adrianangara.shows.Models.Show;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,6 +43,17 @@ public class ShowController {
     @PutMapping("/{id}")
     public Show putContestant(@RequestBody Show show, @PathVariable("id") int id) {
         return sr.update(show, id);
+    }
+
+    //DELETE Operations
+    @DeleteMapping("/{id}")
+    @ResponseStatus(code=HttpStatus.NO_CONTENT)
+    public void deleteContestant(@PathVariable("id") int id) {
+        try {
+            sr.deleteById(id);
+        }catch (EmptyResultDataAccessException e){
+
+        }
     }
 
 

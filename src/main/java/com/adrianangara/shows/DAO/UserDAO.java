@@ -23,13 +23,13 @@ public class UserDAO implements UserRepository {
     @Override
     public Iterable<User> getAll() {
         return jdbc.query("select * from S_User",
-                this::mapRowToContestant);
+                this::mapRowToUser);
     }
 
     @Override
     public User getById(int id) {
         return jdbc.queryForObject("select * from S_User where id=?",
-                this::mapRowToContestant, id);
+                this::mapRowToUser, id);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class UserDAO implements UserRepository {
         int rows = jdbc.update("delete from S_User where id=" + id);
     }
 
-    private User mapRowToContestant(ResultSet rs, int rowNum) throws SQLException {
+    private User mapRowToUser(ResultSet rs, int rowNum) throws SQLException {
 
         return new User(
                 rs.getInt("id"),

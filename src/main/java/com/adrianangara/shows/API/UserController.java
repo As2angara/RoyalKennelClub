@@ -1,11 +1,10 @@
 package com.adrianangara.shows.API;
 
 import com.adrianangara.shows.DAO.Interfaces.UserRepository;
+import com.adrianangara.shows.Models.Contestant;
 import com.adrianangara.shows.Models.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path="/user", produces="application/json")
@@ -20,7 +19,17 @@ public class UserController {
     }
 
 
+    //READ Operations
+    @GetMapping
+    public Iterable<User> getUserTable() {
+        return ur.getAll();
+    }
 
+    @GetMapping("/{id}")
+    public User getUserByID(@PathVariable("id") int id) {
+        User user = ur.getById(id);
+        return user;
+    }
 
 
 }

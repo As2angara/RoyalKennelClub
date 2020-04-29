@@ -39,4 +39,10 @@ public class UserController {
         return ur.save(user);
     }
 
+    //UPDATE Operations
+    @PutMapping("/{id}")
+    public User putContestant(@RequestBody User user, @PathVariable("id") int id) {
+        return ur.update(user, id);
+    }
+
 }

@@ -48,8 +48,8 @@ public class UserDAO implements UserRepository {
     @Override
     public User update(User user, int id) {
 
-        jdbc.update("insert into S_User (email, firstname, lastname, password) " +
-                        "values (?, ?, ?, ?)",
+        jdbc.update("update S_User set email=?, firstname=?, lastname=?, password=?" +
+                        " where id=" + id,
                 user.getEmail(),
                 user.getFirstname(),
                 user.getLastname(),

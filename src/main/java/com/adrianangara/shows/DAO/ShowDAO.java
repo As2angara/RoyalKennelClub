@@ -47,7 +47,7 @@ public class ShowDAO implements ShowRepository {
     @Override
     public Show update(Show show, int id) {
 
-        jdbc.update("update S_User set show_date=?, location=?, show_type=?" +
+        jdbc.update("update S_Show set show_date=?, location=?, show_type=?" +
                         " where id=" + id,
                 new Date(show.getDate()),
                 show.getLocation(),

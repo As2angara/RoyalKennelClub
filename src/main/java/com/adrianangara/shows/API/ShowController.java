@@ -38,6 +38,12 @@ public class ShowController {
         return sr.save(show);
     }
 
+    //UPDATE Operations
+    @PutMapping("/{id}")
+    public Show putContestant(@RequestBody Show show, @PathVariable("id") int id) {
+        return sr.update(show, id);
+    }
+
 
 
 }

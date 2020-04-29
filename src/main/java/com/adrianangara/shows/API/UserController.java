@@ -4,6 +4,7 @@ import com.adrianangara.shows.DAO.Interfaces.UserRepository;
 import com.adrianangara.shows.Models.Contestant;
 import com.adrianangara.shows.Models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,6 +44,17 @@ public class UserController {
     @PutMapping("/{id}")
     public User putContestant(@RequestBody User user, @PathVariable("id") int id) {
         return ur.update(user, id);
+    }
+
+    //DELETE Operations
+    @DeleteMapping("/{id}")
+    @ResponseStatus(code=HttpStatus.NO_CONTENT)
+    public void deleteUser(@PathVariable("id") int id) {
+        try {
+            ur.deleteById(id);
+        }catch (EmptyResultDataAccessException e){
+
+        }
     }
 
 }

@@ -4,6 +4,7 @@ import com.adrianangara.shows.DAO.Interfaces.UserRepository;
 import com.adrianangara.shows.Models.Contestant;
 import com.adrianangara.shows.Models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -31,5 +32,11 @@ public class UserController {
         return user;
     }
 
+    //CREATE Operations
+    @PostMapping(consumes="application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public User postUser(@RequestBody User user) {
+        return ur.save(user);
+    }
 
 }

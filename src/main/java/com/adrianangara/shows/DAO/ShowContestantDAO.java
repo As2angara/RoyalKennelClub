@@ -38,8 +38,10 @@ public class ShowContestantDAO implements ShowContestantRepository {
     }
 
     @Override
-    public void deleteById(int id) {
-        int rows = jdbc.update("delete from Show_Contestant where id=" + id);
+    public void deleteShowCon(ShowContestant con) {
+        int rows = jdbc.update("delete from Show_Contestant where contestant_id=? and show_id=?",
+                con.getShowId(),
+                con.getContestantId());
     }
 
     private ShowContestant mapRowToShowContestant(ResultSet rs, int rowNum) throws SQLException {

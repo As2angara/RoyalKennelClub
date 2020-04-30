@@ -37,7 +37,7 @@ alter table Show_Contestant
     add foreign key (contestant_id) references Contestant(id);
 
 
-create table Breeds_Pic {
+create table Breeds_Pic (
     id bigint,
     pic_url VARCHAR(255)
-}
+);

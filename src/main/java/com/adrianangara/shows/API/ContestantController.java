@@ -33,7 +33,7 @@ public class ContestantController {
         return con;
     }
 
-    @GetMapping("/{ownerId}")
+    @GetMapping("/owner/{ownerId}")
     public Iterable<Contestant> getContestantByOwnerId(@PathVariable("ownerId") int id) {
         return cr.getByOwnerId(id);
     }

@@ -33,6 +33,11 @@ public class ContestantController {
         return con;
     }
 
+    @GetMapping("/{ownerId}")
+    public Iterable<Contestant> getContestantByOwnerId(@PathVariable("ownerId") int id) {
+        return cr.getByOwnerId(id);
+    }
+
     //CREATE Operations
     @PostMapping(consumes="application/json")
     @ResponseStatus(HttpStatus.CREATED)

@@ -41,7 +41,7 @@ public class ContestantDAO implements ContestantRepository {
 
     @Override
     public Contestant save(Contestant con) {
-        jdbc.update("insert into Contestant (name, ownerName, breed, dog_group, isMale, isSpecial) " +
+        jdbc.update("insert into Contestant (name, ownerId, breed, dog_group, isMale, isSpecial) " +
                 "values (?, ?, ?, ?, ?, ?)",
                 con.getName(),
                 con.getOwnerId(),
@@ -57,7 +57,7 @@ public class ContestantDAO implements ContestantRepository {
     @Override
     public Contestant update(Contestant con, int id) {
 
-        jdbc.update("update Contestant set name=?, ownerName=?, breed=?, dog_group=?, isMale=?, isSpecial=?" +
+        jdbc.update("update Contestant set name=?, ownerId=?, breed=?, dog_group=?, isMale=?, isSpecial=?" +
                 " where id=" + id,
                 con.getName(),
                 con.getOwnerId(),

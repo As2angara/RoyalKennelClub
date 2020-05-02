@@ -2,6 +2,7 @@ package com.adrianangara.shows.API;
 
 import com.adrianangara.shows.DAO.ContestantDAO;
 import com.adrianangara.shows.DAO.Interfaces.ContestantRepository;
+import com.adrianangara.shows.Logic.GroupFinder;
 import com.adrianangara.shows.Models.Contestant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -42,13 +43,17 @@ public class ContestantController {
     @PostMapping(consumes="application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public Contestant postContestant(@RequestBody Contestant con) {
-        return cr.save(con);
+        GroupFinder gf = new GroupFinder();
+
+        return cr.save(gf.findGroup(con));
     }
 
     //UPDATE Operations
     @PutMapping("/{id}")
     public Contestant putContestant(@RequestBody Contestant con, @PathVariable("id") int id) {
-        return cr.update(con, id);
+        GroupFinder gf = new GroupFinder();
+
+        return cr.update(gf.findGroup(con), id);
     }
 
     //DELETE Operations

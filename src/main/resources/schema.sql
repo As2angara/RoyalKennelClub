@@ -41,3 +41,14 @@ create table Breeds_Pic (
     id bigint,
     pic_url VARCHAR(255)
 );
+
+create table S_Event (
+    id bigint PRIMARY KEY Auto_increment,
+    name VARCHAR(255)
+);
+
+ALTER TABLE S_Show
+ADD event_id bigint;
+
+alter table S_Show
+    add foreign key (event_id) references S_Event(id);

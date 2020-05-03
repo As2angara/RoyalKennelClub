@@ -41,14 +41,14 @@ public class ShowController {
 
     //UPDATE Operations
     @PutMapping("/{id}")
-    public Show putContestant(@RequestBody Show show, @PathVariable("id") int id) {
+    public Show putShow(@RequestBody Show show, @PathVariable("id") int id) {
         return sr.update(show, id);
     }
 
     //DELETE Operations
     @DeleteMapping("/{id}")
     @ResponseStatus(code=HttpStatus.NO_CONTENT)
-    public void deleteContestant(@PathVariable("id") int id) {
+    public void deleteShow(@PathVariable("id") int id) {
         try {
             sr.deleteById(id);
         }catch (EmptyResultDataAccessException e){

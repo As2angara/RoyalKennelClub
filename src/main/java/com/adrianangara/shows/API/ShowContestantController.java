@@ -31,14 +31,14 @@ public class ShowContestantController {
     //CREATE Operations
     @PostMapping(consumes="application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public ShowContestant postShow(@RequestBody ShowContestant con) {
+    public ShowContestant postShowContestant(@RequestBody ShowContestant con) {
         return sr.save(con);
     }
 
     //DELETE Operations
     @DeleteMapping(consumes="application/json")
     @ResponseStatus(code=HttpStatus.NO_CONTENT)
-    public void deleteContestant(@RequestBody ShowContestant con) {
+    public void deleteShowContestant(@RequestBody ShowContestant con) {
         try {
             sr.deleteShowCon(con);
         }catch (EmptyResultDataAccessException e){

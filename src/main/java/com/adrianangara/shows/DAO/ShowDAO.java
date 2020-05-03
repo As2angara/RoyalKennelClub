@@ -37,8 +37,8 @@ public class ShowDAO implements ShowRepository {
         jdbc.update("insert into S_Show (show_date, location, show_type) " +
                         "values (?, ?, ?)",
                 new Date(show.getDate()),
-                show.getLocation(),
-                show.getType().toString()
+                show.getType().toString(),
+                show.getEventId()
         );
 
         return show;
@@ -50,8 +50,8 @@ public class ShowDAO implements ShowRepository {
         jdbc.update("update S_Show set show_date=?, location=?, show_type=?" +
                         " where id=" + id,
                 new Date(show.getDate()),
-                show.getLocation(),
-                show.getType().toString()
+                show.getType().toString(),
+                show.getEventId()
         );
 
         return show;
@@ -67,8 +67,8 @@ public class ShowDAO implements ShowRepository {
         return new Show(
                 rs.getInt("id"),
                 rs.getDate("show_date").getTime(),
-                rs.getString("location"),
-                Show.Type.valueOf(rs.getString("show_type"))
+                Show.Type.valueOf(rs.getString("show_type")),
+                rs.getInt("event_id")
         );
 
     }

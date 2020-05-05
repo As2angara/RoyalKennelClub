@@ -1,5 +1,10 @@
 package com.adrianangara.shows.Models;
 
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+
+@Data
+@RequiredArgsConstructor
 public class Breed {
     private int id;
     private String life_span;
@@ -11,4 +16,5 @@ public class Breed {
     private String country_code;
     private Measurement height;
     private Measurement weight;
+    private String pic_url;
 }

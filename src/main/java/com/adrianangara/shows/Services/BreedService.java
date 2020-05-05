@@ -9,8 +9,8 @@ public class BreedService {
     private RestTemplate rest = new RestTemplate();
 
 
-    public Breed getBreeds() {
-        return rest.getForObject("https://api.thedogapi.com/v1/breeds", Breed.class);
+    public Breed[] getBreeds() {
+        return rest.getForObject("https://api.thedogapi.com/v1/breeds", Breed[].class);
     }
 
 

@@ -49,7 +49,8 @@ public class ShowContestantDAO implements ShowContestantRepository {
 
         return new ShowContestant(
                 rs.getInt("show_id"),
-                rs.getInt("contestant_id")
+                rs.getInt("contestant_id"),
+                rs.getInt("id")
         );
 
     }

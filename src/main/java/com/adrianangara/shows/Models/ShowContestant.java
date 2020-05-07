@@ -9,9 +9,11 @@ public class ShowContestant {
 
     public int showId;
     public int contestantId;
+    public int id;
 
-    public ShowContestant(int show_id, int contestant_id) {
+    public ShowContestant(int show_id, int contestant_id, int id) {
         this.showId = show_id;
         this.contestantId = contestant_id;
+        this.id = id;
     }
 }

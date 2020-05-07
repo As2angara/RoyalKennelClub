@@ -28,6 +28,11 @@ public class ShowContestantController {
         return sr.getAll();
     }
 
+    @GetMapping(consumes = "application/json")
+    public  ShowContestant getShowContestant(@RequestBody ShowContestant con) {
+        return sr.getShowContestant(con);
+    }
+
     //CREATE Operations
     @PostMapping(consumes="application/json")
     @ResponseStatus(HttpStatus.CREATED)

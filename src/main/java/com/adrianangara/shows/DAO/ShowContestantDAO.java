@@ -20,12 +20,22 @@ public class ShowContestantDAO implements ShowContestantRepository {
         this.jdbc = jdbc;
     }
 
+    //Read Operations
     @Override
     public Iterable<ShowContestant> getAll() {
         return jdbc.query("select * from Show_Contestant",
                 this::mapRowToShowContestant);
     }
 
+    @Override
+    public ShowContestant getShowContestant(ShowContestant con) {
+        return jdbc.queryForObject("select * from Show_Contestant where show_id = ? and contestant_id = ?",
+                this::mapRowToShowContestant,
+                con.getShowId(),
+                con.getContestantId());
+    }
+
+    //Create Operations
     @Override
     public ShowContestant save(ShowContestant con) {
         jdbc.update("insert into Show_Contestant (show_id, contestant_id) " +
@@ -37,6 +47,7 @@ public class ShowContestantDAO implements ShowContestantRepository {
         return con;
     }
 
+    //Delete Operations
     @Override
     public void deleteShowCon(ShowContestant con) {
         int rows = jdbc.update("delete from Show_Contestant where show_id=? and contestant_id=? ",
@@ -50,6 +61,7 @@ public class ShowContestantDAO implements ShowContestantRepository {
         jdbc.update("delete from Show_Contestant where id=?", id);
     }
 
+    //Mapping function
     private ShowContestant mapRowToShowContestant(ResultSet rs, int rowNum) throws SQLException {
 
         return new ShowContestant(

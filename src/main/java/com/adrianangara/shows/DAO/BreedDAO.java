@@ -2,8 +2,7 @@ package com.adrianangara.shows.DAO;
 
 import com.adrianangara.shows.DAO.Interfaces.BreedRepository;
 import com.adrianangara.shows.Models.Breed;
-import com.adrianangara.shows.Models.BreedPic;
-import com.adrianangara.shows.Models.Contestant;
+import com.adrianangara.shows.Models.Measurement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -22,8 +21,8 @@ public class BreedDAO implements BreedRepository {
     }
 
     @Override
-    public Iterable<BreedPic> getAll() {
-        return jdbc.query("select * from Breeds_Pic",
+    public Iterable<Breed> getAll() {
+        return jdbc.query("select * from Breed",
                 this::mapRowToBreedsPic);
     }
 
@@ -50,10 +49,19 @@ public class BreedDAO implements BreedRepository {
         return breed;
     }
 
-    private BreedPic mapRowToBreedsPic(ResultSet rs, int rowNum) throws SQLException {
+    private Breed mapRowToBreedsPic(ResultSet rs, int rowNum) throws SQLException {
 
-        return new BreedPic(
+        return new Breed(
                 rs.getInt("id"),
+                rs.getString("life_span"),
+                rs.getString("name"),
+                rs.getString("origin"),
+                rs.getString("temperament"),
+                rs.getString("bred_for"),
+                rs.getString("breed_group"),
+                rs.getString("country_code"),
+                new Measurement(rs.getString("height_imp"), rs.getString("height_met")),
+                new Measurement(rs.getString("weight_imp"), rs.getString("weight_met")),
                 rs.getString("pic_url")
         );
 

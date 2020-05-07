@@ -45,6 +45,11 @@ public class ShowContestantDAO implements ShowContestantRepository {
                 );
     }
 
+    @Override
+    public void deleteShowConById(int id) {
+        jdbc.update("delete from Show_Contestant where id=?", id);
+    }
+
     private ShowContestant mapRowToShowContestant(ResultSet rs, int rowNum) throws SQLException {
 
         return new ShowContestant(

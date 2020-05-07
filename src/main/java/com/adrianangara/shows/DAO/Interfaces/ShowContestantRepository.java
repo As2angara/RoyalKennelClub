@@ -8,4 +8,5 @@ public interface ShowContestantRepository {
     Iterable<ShowContestant> getAll();
     ShowContestant save(ShowContestant con);
     void deleteShowCon(ShowContestant con);
+    void deleteShowConById(int id);
 }

@@ -36,11 +36,11 @@ public class ShowContestantController {
     }
 
     //DELETE Operations
-    @DeleteMapping(consumes="application/json")
+    @DeleteMapping("/{id}")
     @ResponseStatus(code=HttpStatus.NO_CONTENT)
-    public void deleteShowContestant(@RequestBody ShowContestant con) {
+    public void deleteShowContestant(@PathVariable("id") int id) {
         try {
-            sr.deleteShowCon(con);
+            sr.deleteShowConById(id);
         }catch (EmptyResultDataAccessException e){
 
         }

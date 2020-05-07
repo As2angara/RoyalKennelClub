@@ -75,15 +75,16 @@ public class ContestantController {
         for (ShowContestant contestant : list) {
             if(contestant.getContestantId() == id) {
                 scr.deleteShowCon(contestant);
+
             }
         }
 
         //Call the delete method from Contestants repository to delete from DB
-//        try {
-//            cr.deleteById(id);
-//        }catch (EmptyResultDataAccessException e){
-//
-//        }
+        try {
+            cr.deleteById(id);
+        }catch (EmptyResultDataAccessException e){
+
+        }
     }
 }
 

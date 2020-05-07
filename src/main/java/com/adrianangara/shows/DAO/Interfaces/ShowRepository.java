@@ -7,6 +7,7 @@ public interface ShowRepository {
 
     Iterable<Show> getAll();
     Show getById(int id);
+    Iterable<Show> getShowsByContestantId(int id);
     Show save(Show show);
     Show update(Show show, int id);
     void deleteById(int id);

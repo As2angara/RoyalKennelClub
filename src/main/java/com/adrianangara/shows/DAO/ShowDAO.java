@@ -33,6 +33,16 @@ public class ShowDAO implements ShowRepository {
     }
 
     @Override
+    public Iterable<Show> getShowsByContestantId(int id) {
+        return jdbc.query("select s.id, s.show_date, s.show_type, s.event_id " +
+                            "from S_Show as s " +
+                            "inner join Show_Contestant as sc " +
+                            "on s.id = sc.show_id " +
+                            "where sc.contestant_id = ?",
+                this::mapRowToShow, id);
+    }
+
+    @Override
     public Show save(Show show) {
         jdbc.update("insert into S_Show (show_date, location, show_type) " +
                         "values (?, ?, ?)",

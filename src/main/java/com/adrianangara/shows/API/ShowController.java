@@ -32,6 +32,11 @@ public class ShowController {
         return show;
     }
 
+    @GetMapping("/contestants/{id}")
+    public Iterable<Show> getShowsByContestantId(@PathVariable("id") int id) {
+        return sr.getShowsByContestantId(id);
+    }
+
     //CREATE Operations
     @PostMapping(consumes="application/json")
     @ResponseStatus(HttpStatus.CREATED)

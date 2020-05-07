@@ -28,8 +28,12 @@ public class ShowContestantController {
         return sr.getAll();
     }
 
-    @GetMapping(path="/single", consumes = "application/json")
-    public  ShowContestant getShowContestant(@RequestBody ShowContestant con) {
+    @GetMapping("/{showId}/{contestantId}")
+    public  ShowContestant getShowContestant(@PathVariable("showId") int showId,
+                                             @PathVariable("contestantId") int contestantId) {
+
+        ShowContestant con = new ShowContestant(showId, contestantId, 0);
+
         return sr.getShowContestant(con);
     }
 

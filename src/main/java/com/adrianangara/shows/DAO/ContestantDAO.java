@@ -72,6 +72,7 @@ public class ContestantDAO implements ContestantRepository {
 
     @Override
     public void deleteById(int id) {
+
         int rows = jdbc.update("delete from Contestant where id=" + id);
     }
 

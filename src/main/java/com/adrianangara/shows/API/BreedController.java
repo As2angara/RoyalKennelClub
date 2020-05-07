@@ -23,10 +23,7 @@ public class BreedController {
     //READ Operations
     @GetMapping
     public Iterable<Breed> getBreedsTable() {
-
         return br.getAll();
-
-
     }
 
 }

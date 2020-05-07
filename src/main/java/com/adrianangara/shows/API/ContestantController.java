@@ -2,13 +2,17 @@ package com.adrianangara.shows.API;
 
 import com.adrianangara.shows.DAO.ContestantDAO;
 import com.adrianangara.shows.DAO.Interfaces.ContestantRepository;
+import com.adrianangara.shows.DAO.Interfaces.ShowContestantRepository;
 import com.adrianangara.shows.Logic.GroupFinder;
 import com.adrianangara.shows.Models.Contestant;
+import com.adrianangara.shows.Models.ShowContestant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping(path="/contestants", produces="application/json")
@@ -16,10 +20,13 @@ import org.springframework.web.bind.annotation.*;
 public class ContestantController {
 
     private final ContestantRepository cr;
+    private final ShowContestantRepository scr;
 
     @Autowired
-    public ContestantController(ContestantRepository cr) {
+    public ContestantController(ContestantRepository cr, ShowContestantRepository scr) {
+
         this.cr = cr;
+        this.scr = scr;
     }
 
     //READ Operations
@@ -60,6 +67,18 @@ public class ContestantController {
     @DeleteMapping("/{id}")
     @ResponseStatus(code=HttpStatus.NO_CONTENT)
     public void deleteContestant(@PathVariable("id") int id) {
+
+        //Get the list of show contestants, and check if it exists.
+        Iterable<ShowContestant> list = scr.getAll();
+
+        //If it exists, then remove all from show contestants table
+        for (ShowContestant contestant : list) {
+            if(contestant.getContestantId() == id) {
+                scr.deleteShowCon(contestant);
+            }
+        }
+
+        //Call the delete method from Contestants repository to delete from DB
         try {
             cr.deleteById(id);
         }catch (EmptyResultDataAccessException e){

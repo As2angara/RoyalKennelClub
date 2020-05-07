@@ -28,7 +28,7 @@ public class BreedController {
 
     //READ Operations
     @GetMapping
-    public Iterable<Breed> getBreedsPicTable() {
+    public void getBreedsPicTable() {
         BreedService bs = new BreedService();
         ArrayList<Breed> pics = new ArrayList<Breed>();
 
@@ -38,13 +38,13 @@ public class BreedController {
 
                 if(breed.getId() == pic.getId()) {
                     breed.setPic_url(pic.getPic_url());
-                    pics.add(breed);
+                    br.save(breed);
                 }
             }
         }
 
 
-        return pics;
+
     }
 
     @GetMapping("/fromapi")

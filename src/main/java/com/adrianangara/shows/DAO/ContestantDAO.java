@@ -34,6 +34,7 @@ public class ContestantDAO implements ContestantRepository {
                 this::mapRowToContestant, id);
     }
 
+    @Override
     public Iterable<Contestant> getByOwnerId(int id) {
         return jdbc.query("select * from Contestant where owner_id=?",
                 this::mapRowToContestant, id);

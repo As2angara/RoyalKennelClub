@@ -28,7 +28,7 @@ public class ShowContestantController {
         return sr.getAll();
     }
 
-    @GetMapping(consumes = "application/json")
+    @GetMapping(path="/single", consumes = "application/json")
     public  ShowContestant getShowContestant(@RequestBody ShowContestant con) {
         return sr.getShowContestant(con);
     }

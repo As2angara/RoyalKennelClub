@@ -79,11 +79,11 @@ public class ContestantController {
         }
 
         //Call the delete method from Contestants repository to delete from DB
-        try {
-            cr.deleteById(id);
-        }catch (EmptyResultDataAccessException e){
-
-        }
+//        try {
+//            cr.deleteById(id);
+//        }catch (EmptyResultDataAccessException e){
+//
+//        }
     }
 }
 

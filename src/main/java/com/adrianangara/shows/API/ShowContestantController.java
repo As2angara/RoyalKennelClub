@@ -4,6 +4,7 @@ import com.adrianangara.shows.DAO.Interfaces.ShowContestantRepository;
 import com.adrianangara.shows.DAO.Interfaces.ShowRepository;
 import com.adrianangara.shows.Models.Show;
 import com.adrianangara.shows.Models.ShowContestant;
+import com.adrianangara.shows.Models.ShowContestantFull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,11 @@ public class ShowContestantController {
     @GetMapping
     public Iterable<ShowContestant> getShowContestantTable() {
         return sr.getAll();
+    }
+
+    @GetMapping("/full")
+    public Iterable<ShowContestantFull> getShowContestantsFull() {
+        return sr.getAllFull();
     }
 
     @GetMapping("/{showId}/{contestantId}")

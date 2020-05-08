@@ -3,6 +3,7 @@ package com.adrianangara.shows.DAO;
 import com.adrianangara.shows.DAO.Interfaces.ShowContestantRepository;
 import com.adrianangara.shows.Models.Contestant;
 import com.adrianangara.shows.Models.ShowContestant;
+import com.adrianangara.shows.Models.ShowContestantFull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -22,9 +23,15 @@ public class ShowContestantDAO implements ShowContestantRepository {
 
     //Read Operations
     @Override
-    public Iterable<ShowContestant> getAll() {
-        return jdbc.query("select * from Show_Contestant",
-                this::mapRowToShowContestant);
+    public Iterable<ShowContestantFull> getAllFull() {
+        return jdbc.query("select sc.contestant_id, sc.show_id, o.firstname, o.lastname, " +
+                        "c.name, c.breed, c.dog_group, c.isMale, c.isSpecial " +
+                        "from s_user as o " +
+                        "inner join contestant as c " +
+                        "on o.id = c.owner_id " +
+                        "inner join show_contestant as sc " +
+                        "on c.id = sc.contestant_id;",
+                this::mapRowToShowContestantFull);
     }
 
     @Override
@@ -33,6 +40,12 @@ public class ShowContestantDAO implements ShowContestantRepository {
                 this::mapRowToShowContestant,
                 con.getShowId(),
                 con.getContestantId());
+    }
+
+    @Override
+    public Iterable<ShowContestant> getAll() {
+        return jdbc.query("select * from Show_Contestant",
+                this::mapRowToShowContestant);
     }
 
     //Create Operations
@@ -68,6 +81,22 @@ public class ShowContestantDAO implements ShowContestantRepository {
                 rs.getInt("show_id"),
                 rs.getInt("contestant_id"),
                 rs.getInt("id")
+        );
+
+    }
+
+    private ShowContestantFull mapRowToShowContestantFull(ResultSet rs, int rowNum) throws SQLException {
+
+        return new ShowContestantFull(
+                rs.getInt("contestant_id"),
+                rs.getInt("show_id"),
+                rs.getString("firstname"),
+                rs.getString("lastname"),
+                rs.getString("name"),
+                rs.getString("breed"),
+                rs.getString("dog_group"),
+                rs.getBoolean("isMale"),
+                rs.getBoolean("isSpecial")
         );
 
     }

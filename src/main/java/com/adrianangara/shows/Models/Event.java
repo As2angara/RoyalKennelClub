@@ -7,10 +7,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class Event {
 
-    public int id;
-    public String name;
-    public String location;
-    public String venue;
+    private int id;
+    private String name;
+    private String location;
+    private String venue;
 
 
     public Event(int id, String name, String location, String venue) {

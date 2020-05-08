@@ -11,13 +11,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class Contestant {
 
-    public int id;
-    public String name;
-    public int ownerId;
-    public String breed;
-    public String group;
-    public boolean isMale;
-    public boolean isSpecial;
+    private int id;
+    private String name;
+    private int ownerId;
+    private String breed;
+    private String group;
+    private boolean isMale;
+    private boolean isSpecial;
 
     public Contestant(int id, String name, int ownerId, String breed, String group,
                       boolean isMale, boolean isSpecial) {

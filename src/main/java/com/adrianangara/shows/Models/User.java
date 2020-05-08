@@ -10,11 +10,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class User {
 
-    public int id;
-    public String email;
-    public String firstname;
-    public String lastname;
-    public String password;
+    private int id;
+    private String email;
+    private String firstname;
+    private String lastname;
+    private String password;
 
     public User(int id, String email, String firstname, String lastname, String password) {
         this.id = id;

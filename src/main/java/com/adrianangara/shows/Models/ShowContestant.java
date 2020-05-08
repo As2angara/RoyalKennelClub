@@ -7,9 +7,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ShowContestant {
 
-    public int showId;
-    public int contestantId;
-    public int id;
+    private int showId;
+    private int contestantId;
+    private int id;
 
     public ShowContestant(int show_id, int contestant_id, int id) {
         this.showId = show_id;

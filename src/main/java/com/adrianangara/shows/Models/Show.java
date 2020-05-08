@@ -9,10 +9,10 @@ import java.sql.Date;
 @RequiredArgsConstructor
 public class Show {
 
-    public int id;
-    public long date;
-    public Type type;
-    public int eventId;
+    private int id;
+    private long date;
+    private Type type;
+    private int eventId;
 
     public Show(int id, long show_date, Type show_type, int eventId) {
         this.id = id;

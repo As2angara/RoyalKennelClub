@@ -1,12 +1,10 @@
 package com.adrianangara.shows.API;
 
-import com.adrianangara.shows.DAO.Interfaces.BreedRepository;
-import com.adrianangara.shows.DAO.Interfaces.ContestantRepository;
-import com.adrianangara.shows.DAO.Interfaces.UserRepository;
+import com.adrianangara.shows.DAO.Interfaces.*;
 import com.adrianangara.shows.Logic.GenerateContestants;
+import com.adrianangara.shows.Logic.GenerateShowContestants;
 import com.adrianangara.shows.Logic.GenerateUser;
-import com.adrianangara.shows.Models.Breed;
-import com.adrianangara.shows.Models.User;
+import com.adrianangara.shows.Models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,14 +21,19 @@ public class GenerateController {
     private final UserRepository ur;
     private final BreedRepository br;
     private final ContestantRepository cr;
+    private final ShowRepository sr;
+    private final ShowContestantRepository scr;
 
     @Autowired
     public GenerateController(UserRepository ur, BreedRepository br,
-                              ContestantRepository cr) {
+                              ContestantRepository cr, ShowRepository sr,
+                              ShowContestantRepository scr) {
 
         this.ur = ur;
         this.br = br;
         this.cr = cr;
+        this.sr = sr;
+        this.scr = scr;
     }
 
     //Generate a list of dummy users
@@ -48,26 +51,49 @@ public class GenerateController {
         return "generated";
     }
 
+    //Generate a list of dummy contestants
     @GetMapping("/contestants")
-    public String geneerateContestants() {
+    public String generateContestants() {
 
-        //Initialize a GenerateContestants object and breed list
-        GenerateContestants gc = new GenerateContestants();
-        Iterable<Breed> list = br.getAll();
+//        //Initialize a GenerateContestants object and breed list
+//        GenerateContestants gc = new GenerateContestants();
+//        Iterable<Breed> list = br.getAll();
+//
+//        //For each user in the list generate 1 or 2 dogs
+//        for (User user : ur.getAll()) {
+//
+//            //Generate a Contestant
+//            if(Math.random() < 0.3) {
+//                cr.save(gc.generateContestant(user, list));
+//                cr.save(gc.generateContestant(user, list));
+//            }else {
+//                cr.save(gc.generateContestant(user, list));
+//            }
+//
+//
+//        }
 
-        //For each user in the list generate 1 or 2 dogs
-        for (User user : ur.getAll()) {
 
-            //Generate a Contestant
-            if(Math.random() < 0.3) {
-                cr.save(gc.generateContestant(user, list));
-                cr.save(gc.generateContestant(user, list));
-            }else {
-                cr.save(gc.generateContestant(user, list));
-            }
+        return "generated";
+    }
 
+    //Generate a list of dummy show-contestants
+    @GetMapping("/show-contestant")
+    public String generateShowContestants() {
 
-        }
+//        GenerateShowContestants gsc = new GenerateShowContestants();
+//
+//        Iterable<Show> list_show = sr.getAll();
+//        Iterable<Contestant> list_con = cr.getAll();
+//
+//        for (Contestant con : list_con) {
+//
+//            ShowContestant scon = gsc.generateShowContestant(list_show, con);
+//
+//            scr.save(scon);
+//        }
+//
+
 
 
         return "generated";

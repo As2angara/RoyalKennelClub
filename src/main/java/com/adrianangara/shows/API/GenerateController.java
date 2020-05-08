@@ -59,12 +59,13 @@ public class GenerateController {
         for (User user : ur.getAll()) {
 
             //Generate a Contestant
-            if(Math.random() < 0.5) {
+            if(Math.random() < 0.3) {
                 cr.save(gc.generateContestant(user, list));
                 cr.save(gc.generateContestant(user, list));
             }else {
                 cr.save(gc.generateContestant(user, list));
             }
+
 
         }
 

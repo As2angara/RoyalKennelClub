@@ -51,16 +51,18 @@ public class ContestantController {
     @ResponseStatus(HttpStatus.CREATED)
     public Contestant postContestant(@RequestBody Contestant con) {
         GroupFinder gf = new GroupFinder();
+        con.setGroup(gf.findGroup(con.getBreed()));
 
-        return cr.save(gf.findGroup(con));
+        return cr.save(con);
     }
 
     //UPDATE Operations
     @PutMapping("/{id}")
     public Contestant putContestant(@RequestBody Contestant con, @PathVariable("id") int id) {
         GroupFinder gf = new GroupFinder();
+        con.setGroup(gf.findGroup(con.getBreed()));
 
-        return cr.update(gf.findGroup(con), id);
+        return cr.update(con, id);
     }
 
     //DELETE Operations

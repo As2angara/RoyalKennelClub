@@ -47,7 +47,25 @@ public class ShowContestantController {
     @PostMapping(consumes="application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public ShowContestant postShowContestant(@RequestBody ShowContestant con) {
-        return sr.save(con);
+
+        //Get the contestant from the repository to check if it exists
+        ShowContestant contestant = null;
+        try{
+            contestant = sr.getShowContestant(con);
+        } catch (EmptyResultDataAccessException e) {
+            System.out.println(e);
+            contestant = null;
+        }
+
+
+
+        //If its null save the new contestant
+        if (contestant == null) {
+            return sr.save(con);
+        } else {
+            return contestant;
+        }
+
     }
 
     //DELETE Operations

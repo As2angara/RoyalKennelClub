@@ -10,10 +10,18 @@ Users of this application are able to:
 * Sign up for events, and shows
 * Display the list of events, their hosts, and contestants of certain shows
 
+##Development
+The tech stack for this project include the following: 
+* Angular for the client side web portal 
+* Spring/SpringBoot for the server side, and RESTful Services
+* JDBC to connect the MySQL database
+* Heroku foe deploying both the client and server side applications
+* Mac OS as the development environment
+
 
 ## User Interfaces
 The layout of the main user profile was created with common design features in mind. 
-A top container featuring all the important user information. 
+A top container featuring all the important user information
 and a grid layout container below showcasing the various dog contestants in the user's roster. 
 
 The  main inputs in this interface include a vertical ellipse giving the user options for editing, deleting and viewing. 

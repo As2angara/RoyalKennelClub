@@ -10,7 +10,7 @@ Users of this application are able to:
 * Sign up for events, and shows
 * Display the list of events, their hosts, and contestants of certain shows
 
-##Development
+## Development
 The tech stack for this project include the following: 
 * Angular for the client side web portal 
 * Spring/SpringBoot for the server side, and RESTful Services
